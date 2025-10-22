@@ -1,0 +1,57 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{509D261F-215E-40E0-918F-AEB9D9B459D1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CallWellbeing.Core", "src\CallWellbeing.Core\CallWellbeing.Core.csproj", "{6EFC4642-98FA-40E1-BF5E-87BC3EAB155C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CallWellbeing.Infra", "src\CallWellbeing.Infra\CallWellbeing.Infra.csproj", "{A8115763-2D2D-4E28-B464-415368B6016F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CallWellbeing.Api", "src\CallWellbeing.Api\CallWellbeing.Api.csproj", "{B82107C3-9569-45FE-9D66-A10B7566C154}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CallWellbeing.Worker", "src\CallWellbeing.Worker\CallWellbeing.Worker.csproj", "{41386466-F124-458B-8BB0-9B05F72DB3FF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{C39F76F9-8A33-4E80-A0DB-EE194B84CF12}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CallWellbeing.Core.Tests", "tests\CallWellbeing.Core.Tests\CallWellbeing.Core.Tests.csproj", "{AF42D682-8B87-4210-B0C4-652587C2B4D3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6EFC4642-98FA-40E1-BF5E-87BC3EAB155C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6EFC4642-98FA-40E1-BF5E-87BC3EAB155C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6EFC4642-98FA-40E1-BF5E-87BC3EAB155C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6EFC4642-98FA-40E1-BF5E-87BC3EAB155C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8115763-2D2D-4E28-B464-415368B6016F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8115763-2D2D-4E28-B464-415368B6016F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8115763-2D2D-4E28-B464-415368B6016F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8115763-2D2D-4E28-B464-415368B6016F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B82107C3-9569-45FE-9D66-A10B7566C154}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B82107C3-9569-45FE-9D66-A10B7566C154}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B82107C3-9569-45FE-9D66-A10B7566C154}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B82107C3-9569-45FE-9D66-A10B7566C154}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41386466-F124-458B-8BB0-9B05F72DB3FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41386466-F124-458B-8BB0-9B05F72DB3FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41386466-F124-458B-8BB0-9B05F72DB3FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41386466-F124-458B-8BB0-9B05F72DB3FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF42D682-8B87-4210-B0C4-652587C2B4D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF42D682-8B87-4210-B0C4-652587C2B4D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF42D682-8B87-4210-B0C4-652587C2B4D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF42D682-8B87-4210-B0C4-652587C2B4D3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6EFC4642-98FA-40E1-BF5E-87BC3EAB155C} = {509D261F-215E-40E0-918F-AEB9D9B459D1}
+		{A8115763-2D2D-4E28-B464-415368B6016F} = {509D261F-215E-40E0-918F-AEB9D9B459D1}
+		{B82107C3-9569-45FE-9D66-A10B7566C154} = {509D261F-215E-40E0-918F-AEB9D9B459D1}
+		{41386466-F124-458B-8BB0-9B05F72DB3FF} = {509D261F-215E-40E0-918F-AEB9D9B459D1}
+		{AF42D682-8B87-4210-B0C4-652587C2B4D3} = {C39F76F9-8A33-4E80-A0DB-EE194B84CF12}
+	EndGlobalSection
+EndGlobal

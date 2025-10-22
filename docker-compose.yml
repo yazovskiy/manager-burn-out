@@ -1,0 +1,59 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_DB: callwellbeing
+      POSTGRES_USER: callwell
+      POSTGRES_PASSWORD: wellbeing
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        PROJECT: src/CallWellbeing.Api/CallWellbeing.Api.csproj
+        BUILD_CONFIGURATION: Release
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ConnectionStrings__Default: Host=postgres;Port=5432;Database=callwellbeing;Username=callwell;Password=wellbeing
+      Exolve__BaseUrl: https://api.exolve.ru
+      Exolve__ApiKey: dev-placeholder
+      Exolve__AppId: sample-app
+      GigaChat__BaseUrl: https://gigachat.devices.sberbank.ru
+      GigaChat__OAuthToken: dev-placeholder
+      GigaChat__Model: GigaChat-Pro
+      CALLWELLBEING_SEED: "true"
+    depends_on:
+      - postgres
+    ports:
+      - "8080:8080"
+
+  worker:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        PROJECT: src/CallWellbeing.Worker/CallWellbeing.Worker.csproj
+        BUILD_CONFIGURATION: Release
+    command: ["dotnet", "CallWellbeing.Worker.dll"]
+    environment:
+      ConnectionStrings__Default: Host=postgres;Port=5432;Database=callwellbeing;Username=callwell;Password=wellbeing
+      Exolve__BaseUrl: https://api.exolve.ru
+      Exolve__ApiKey: dev-placeholder
+      Exolve__AppId: sample-app
+      GigaChat__BaseUrl: https://gigachat.devices.sberbank.ru
+      GigaChat__OAuthToken: dev-placeholder
+      GigaChat__Model: GigaChat-Pro
+      CALLWELLBEING_SEED: "true"
+      Worker__PollingIntervalSeconds: "60"
+    depends_on:
+      - postgres
+
+volumes:
+  postgres_data:

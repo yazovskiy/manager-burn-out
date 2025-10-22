@@ -1,0 +1,46 @@
+<Project>
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <LangVersion>12.0</LangVersion>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <AnalysisLevel>latest</AnalysisLevel>
+    <Deterministic>true</Deterministic>
+    <NoWarn>$(NoWarn);1591</NoWarn>
+    <NoWarn>$(NoWarn);NU1902</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Serilog.AspNetCore" Version="8.0.1" PrivateAssets="all" Condition="'$(MSBuildProjectName)'=='CallWellbeing.Api'" />
+    <PackageReference Include="Serilog.Sinks.Console" Version="5.0.1" PrivateAssets="all" Condition="'$(MSBuildProjectName)'=='CallWellbeing.Api' Or '$(MSBuildProjectName)'=='CallWellbeing.Worker'" />
+    <PackageReference Include="Serilog.Extensions.Hosting" Version="8.0.0" PrivateAssets="all" Condition="'$(MSBuildProjectName)'=='CallWellbeing.Worker'" />
+    <PackageReference Include="Serilog.Enrichers.Environment" Version="3.0.0" PrivateAssets="all" Condition="'$(MSBuildProjectName)'=='CallWellbeing.Api' Or '$(MSBuildProjectName)'=='CallWellbeing.Worker'" />
+    <PackageReference Include="Serilog.Enrichers.Process" Version="2.0.1" PrivateAssets="all" Condition="'$(MSBuildProjectName)'=='CallWellbeing.Api' Or '$(MSBuildProjectName)'=='CallWellbeing.Worker'" />
+    <PackageReference Include="Serilog.Enrichers.Thread" Version="3.1.0" PrivateAssets="all" Condition="'$(MSBuildProjectName)'=='CallWellbeing.Api' Or '$(MSBuildProjectName)'=='CallWellbeing.Worker'" />
+    <PackageReference Include="Serilog.Sinks.OpenTelemetry" Version="1.0.0" PrivateAssets="all" Condition="'$(MSBuildProjectName)'=='CallWellbeing.Api' Or '$(MSBuildProjectName)'=='CallWellbeing.Worker'" />
+    <PackageReference Include="Serilog.Formatting.Compact" Version="2.0.0" PrivateAssets="all" Condition="'$(MSBuildProjectName)'=='CallWellbeing.Api' Or '$(MSBuildProjectName)'=='CallWellbeing.Worker'" />
+    <PackageReference Include="Serilog.Settings.Configuration" Version="8.0.0" PrivateAssets="all" Condition="'$(MSBuildProjectName)'=='CallWellbeing.Api' Or '$(MSBuildProjectName)'=='CallWellbeing.Worker'" />
+    <PackageReference Include="OpenTelemetry.Exporter.Console" Version="1.6.0" PrivateAssets="all" Condition="'$(MSBuildProjectName)'=='CallWellbeing.Api' Or '$(MSBuildProjectName)'=='CallWellbeing.Worker'" />
+    <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.6.0" PrivateAssets="all" Condition="'$(MSBuildProjectName)'=='CallWellbeing.Api' Or '$(MSBuildProjectName)'=='CallWellbeing.Worker'" />
+    <PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="1.7.0" PrivateAssets="all" Condition="'$(MSBuildProjectName)'=='CallWellbeing.Api' Or '$(MSBuildProjectName)'=='CallWellbeing.Worker'" />
+    <PackageReference Include="Microsoft.Extensions.Http.Polly" Version="8.0.0" Condition="'$(MSBuildProjectName)'=='CallWellbeing.Infra'" />
+    <PackageReference Include="Polly.Contrib.WaitAndRetry" Version="1.1.1" Condition="'$(MSBuildProjectName)'=='CallWellbeing.Infra'" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.2" Condition="'$(MSBuildProjectName)'=='CallWellbeing.Infra'" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.2" Condition="'$(MSBuildProjectName)'=='CallWellbeing.Infra'" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.2" Condition="'$(MSBuildProjectName)'=='CallWellbeing.Infra'">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Options" Version="8.0.0" Condition="'$(MSBuildProjectName)'=='CallWellbeing.Core'" />
+    <PackageReference Include="Scrutor" Version="4.2.2" Condition="'$(MSBuildProjectName)'=='CallWellbeing.Api' Or '$(MSBuildProjectName)'=='CallWellbeing.Worker'" />
+    <PackageReference Include="Serilog.Extensions.Logging" Version="8.0.0" PrivateAssets="all" Condition="'$(MSBuildProjectName)'=='CallWellbeing.Infra'" />
+    <PackageReference Include="Bogus" Version="35.4.0" Condition="'$(MSBuildProjectName)'=='CallWellbeing.Infra'" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(MSBuildProjectName)'=='CallWellbeing.Core.Tests' Or '$(MSBuildProjectName)'=='CallWellbeing.Infra.Tests'">
+    <PackageReference Include="FluentAssertions" Version="6.12.0" />
+    <PackageReference Include="Bogus" Version="35.4.0" />
+    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="8.0.0" />
+  </ItemGroup>
+</Project>

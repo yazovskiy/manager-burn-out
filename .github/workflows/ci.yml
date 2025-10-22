@@ -1,0 +1,44 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Restore
+        run: dotnet restore
+
+      - name: Build
+        run: dotnet build --no-restore --configuration Release
+
+      - name: Test
+        run: dotnet test --no-build --configuration Release --collect:"XPlat Code Coverage"
+
+      - name: Build API image
+        run: docker build . --file Dockerfile --build-arg PROJECT=src/CallWellbeing.Api/CallWellbeing.Api.csproj --build-arg BUILD_CONFIGURATION=Release --tag call-wellbeing-api:ci
+
+      - name: Build Worker image
+        run: docker build . --file Dockerfile --build-arg PROJECT=src/CallWellbeing.Worker/CallWellbeing.Worker.csproj --build-arg BUILD_CONFIGURATION=Release --tag call-wellbeing-worker:ci
+
+      - name: Publish containers to GHCR
+        if: github.ref == 'refs/heads/main'
+        env:
+          GHCR_OWNER: ${{ github.repository_owner }}
+        run: |
+          owner=$(echo "$GHCR_OWNER" | tr '[:upper:]' '[:lower:]')
+          echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u "$owner" --password-stdin
+          docker tag call-wellbeing-api:ci ghcr.io/$owner/call-wellbeing-api:latest
+          docker tag call-wellbeing-worker:ci ghcr.io/$owner/call-wellbeing-worker:latest
+          docker push ghcr.io/$owner/call-wellbeing-api:latest
+          docker push ghcr.io/$owner/call-wellbeing-worker:latest
